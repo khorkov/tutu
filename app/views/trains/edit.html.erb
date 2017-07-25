@@ -1,6 +1,31 @@
-<h1>Editing Train</h1>
+<h1>Изменить номер</h1>
 
-<%= render 'form', train: @train %>
+<%= form_for @train do |f| %>
 
-<%= link_to 'Show', @train %> |
-<%= link_to 'Back', trains_path %>
+  <% if @train.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@train.errors.count, "error") %> prohibited
+        this route from being saved:
+      </h2>
+      <ul>
+        <% @train.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= f.label :number %><br>
+    <%= f.text_field :number %>
+  </p>
+
+  <p>
+    <%= f.submit 'Изменить' %>
+  </p>
+
+<% end %>
+
+
+<%= link_to 'Назад', trains_path %>
