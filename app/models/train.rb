@@ -1,3 +1,3 @@
-class Train < ActiveRecord::Base
+class Train < ApplicationRecord
   validates :number, presence: true
 end

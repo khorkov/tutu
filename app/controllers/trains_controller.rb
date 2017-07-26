@@ -1,19 +1,17 @@
 class TrainsController < ApplicationController
-  before_action :set_train, only: [:show, :edit, :update, :destroy]
+  before_action :set_train, only: %i[show edit update destroy]
 
   def index
     @trains = Train.all
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @train = Train.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @train = Train.new(train_params)
@@ -31,7 +29,7 @@ class TrainsController < ApplicationController
     else
       render :edit
     end
-  end 
+  end
 
   def destroy
     @train.destroy
@@ -47,5 +45,4 @@ class TrainsController < ApplicationController
   def train_params
     params.require(:train).permit(:number)
   end
-
 end
