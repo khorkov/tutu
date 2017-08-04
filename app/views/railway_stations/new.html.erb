@@ -1,31 +1,5 @@
 <h1>Добавить станцию</h1>
 
-<%= form_for @railway_station do |f| %>
-
-  <% if @railway_station.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(@railway_station.errors.count, "error") %> prohibited
-        this railwaystation from being saved:
-      </h2>
-      <ul>
-        <% @railway_station.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <p>
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </p>
-
-  <p>
-    <%= f.submit 'Создать' %>
-  </p>
-
-<% end %>
-
+<%= render 'form' %>
 
 <%= link_to 'Назад', railway_stations_path %>
