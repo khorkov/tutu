@@ -1,22 +1,28 @@
-<%= form_for @train do |f| %>
-  <%= render 'common/errors', resource: @train %>
-  <p>
-    <%= f.label :number, "Номер поезда:" %><br>
+<%= form_for @wagon do |f| %>
+  <%= render 'common/errors', resource: @wagon %>
+
+  <div class="field">
+    <%= f.label :number, "Номер вагона:" %><br>
     <%= f.text_field :number %>
-  </p>
-
-  <div class="field">
-    <%= f.label :current_station, "Выберите маршрут:" %>
-    <%= f.collection_select :route_id, Route.all, :id, :title %>
   </div>
 
   <div class="field">
-    <%= f.label :route, "Выберите станцию:" %>
-    <%= f.collection_select :current_station_id, RailwayStation.all, :id, :title %>
+    <%= f.label :wagon_type, "Тип вагона:" %><br>
+    <%= f.text_field :wagon_type%>
+  </div>
+
+  <div class="field">
+    <%= f.label :top_seats, "Верхних мест:" %><br>
+    <%= f.text_field :top_seats %>
+  </div>
+
+  <div class="field">
+    <%= f.label :bottom_seats, "Нижних мест:"  %><br>
+    <%= f.text_field :bottom_seats %>
   </div>
 
   <p>
-    <%= f.submit "#{ @train.new_record? ? 'Создать' : 'Изменить' }" %>
+    <%= f.submit "#{ @wagon.new_record? ? 'Создать' : 'Изменить' }" %>
   </p>
 
 <% end %>
