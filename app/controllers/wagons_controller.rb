@@ -17,7 +17,7 @@ class WagonsController < ApplicationController
     @wagon = Wagon.new(wagon_params)
 
     if @wagon.save
-      redirect_to @wagon
+      redirect_to @wagon, notice: 'Вагон был успешно создан.'
     else
       render :new
     end
@@ -25,7 +25,7 @@ class WagonsController < ApplicationController
 
   def update
     if @wagon.update(wagon_params)
-      redirect_to @wagon
+      redirect_to @wagon, notice: 'Вагон был успешно обновлен.'
     else
       render :edit
     end
@@ -33,7 +33,7 @@ class WagonsController < ApplicationController
 
   def destroy
     @wagon.destroy
-    redirect_to wagons_path
+    redirect_to wagons_path, notice: 'Вагон был успешно удален.'
   end
 
   private

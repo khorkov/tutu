@@ -8,7 +8,7 @@
 
   <div class="field">
     <%= f.label :wagon_type, "Тип вагона:" %><br>
-    <%= f.text_field :wagon_type%>
+    <%= f.select :wagon_type, Wagon::TYPE.invert.to_a %>
   </div>
 
   <div class="field">

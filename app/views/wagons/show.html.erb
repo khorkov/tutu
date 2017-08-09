@@ -7,7 +7,7 @@
 
 <p>
   <strong>Тип вагона:</strong>
-   <%= @wagon.wagon_type %>
+  <%= Wagon::TYPE[@wagon.wagon_type.to_sym] %>
 </p>
 
 <p>
