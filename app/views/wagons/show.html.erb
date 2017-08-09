@@ -20,5 +20,14 @@
   <%= @wagon.bottom_seats %>
 </p>
 
+<p>
+  <strong>Добален к проезду:</strong>
+  <% if @wagon.train.present? %>
+    <%= @wagon.train.number %>
+  <% else %>
+  К проезду не добавлен
+  <% end %>
+</p>
+
 <%= link_to 'Редактировать', edit_wagon_path(@wagon) %> |
 <%= link_to 'Назад', wagons_path %>
