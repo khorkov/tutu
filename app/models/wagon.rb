@@ -5,6 +5,7 @@ class Wagon < ApplicationRecord
   belongs_to :train, optional: true
 
   validates :number, :wagon_type, :bottom_seats, :top_seats, presence: true
+  validates :number, uniqueness: { scope: :train_id }
 
   before_validation :set_number
 
