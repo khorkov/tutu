@@ -23,14 +23,16 @@
   <% end %>
 </p>
 
-<% if @wagon.nil? %>
-  <p> У поезда нет вагонов! </p>
-<% else %>
-  <strong>Количество вагонов: </strong>
-  <% Wagon::TYPE.each do |type, value| %>
-    <%= value %>: <%=  @wagon.wagon_type(type).count  %>
-  <% end %>
-<% end %>
+<table>
+  <tbody>
+    <strong>Вагоны в составе поезда: </strong>
+    <% @train.wagons.each do |wagon| %>
+    <tr>
+      <td><%= link_to wagon.number, wagon_path(wagon) %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
 
-<%= link_to 'Редактировать', edit_train_path(@train) %> |
+<%= link_to 'Редактировать', edit_train_path(@train) %>
 <%= link_to 'Назад', trains_path %>
