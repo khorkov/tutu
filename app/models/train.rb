@@ -5,4 +5,10 @@ class Train < ApplicationRecord
   has_many :wagons
 
   validates :number, presence: true
+
+  def wagons_sorted
+    sort_type = wagon_sorting_type ? :asc : :desc
+    wagons.order(number: sort_type)
+  end
+
 end

@@ -26,7 +26,7 @@
 <table>
   <tbody>
     <strong>Вагоны в составе поезда: </strong>
-    <% @train.wagons.each do |wagon| %>
+    <% @train.wagons_sorted.each do |wagon| %>
     <tr>
       <td><%= link_to wagon.number, wagon_path(wagon) %></td>
     </tr>
