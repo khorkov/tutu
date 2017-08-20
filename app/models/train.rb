@@ -11,4 +11,8 @@ class Train < ApplicationRecord
     wagons.order(number: sort_type)
   end
 
+  def sum_of_seats_by_wagon_type(wagon_type, seat_type)
+    wagons.where("type = '#{wagon_type}'").sum("#{seat_type}")
+  end
+
 end
