@@ -4,4 +4,6 @@ class RailwayStation < ApplicationRecord
   has_many :routes, through: :railway_stations_routes
 
   validates :title, presence: true
+
+  scope :ordered, -> { joins(:railway_stations_routes).order('railway_stations_routes.station_position').uniq }
 end
