@@ -1,0 +1,39 @@
+p id="notice" = notice
+
+p
+  strong Название:
+  =< @route.title
+p
+  strong Список поездов маршрута:
+p
+  - if @route.trains.empty?
+    Поездов на маршруте нет
+  - else
+    ul
+      - @route.trains.each do |train|
+        li = train.number
+p
+  strong Список станций маршрута:
+p
+  - if @route.railway_stations.empty?
+    Станций в маршруте нет.
+  - else
+      table
+        thead
+          tr
+            td width="100px" Название
+            td Позиция
+        tbody
+          - @route.railway_stations.ordered.each do |station|
+            tr
+              td = station.title
+              td
+                = form_tag update_position_railway_station_path(station), method: :patch do
+                  = number_field_tag :station_position, station.position_in(@route)
+                  = hidden_field_tag :route_id, @route.id
+                  = submit_tag "Изменить"
+p
+
+  = link_to 'Редактировать', edit_route_path(@route)
+  br
+= link_to 'Назад', routes_path
