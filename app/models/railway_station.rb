@@ -17,10 +17,32 @@ class RailwayStation < ApplicationRecord
     station_route(route).try(:station_position)
   end
 
+  def arrival_time(route)
+    station_route(route).try(:arrival_time)
+  end
+
+  def departure_time(route)
+    station_route(route).try(:departure_time)
+  end
+
+  def update_arrival_time(route, date)
+    station_route = station_route(route)
+    station_route.update(arrival_time: time(date)) if station_route
+  end
+
+   def update_departure_time(route, date)
+     station_route = station_route(route)
+     station_route.update(departure_time: time(date)) if station_route
+   end
+
   protected
 
   def station_route(route)
     @station_route ||= railway_stations_routes.where(route: route).first
+  end
+
+  def time(date)
+    date['hour'].concat(':').concat(date['minute'])
   end
 
 end
