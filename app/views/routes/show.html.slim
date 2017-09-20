@@ -31,17 +31,13 @@ p
               td = station.title
               td
                 = form_tag update_position_railway_station_path(station), method: :patch do
-                  = number_field_tag :station_position, station.position_in(@route)
+                  = number_field_tag :station_position, station.check_station_attr(@route, :station_position)
                   = hidden_field_tag :route_id, @route.id
                   = submit_tag "Изменить"
               td
-                = form_tag update_arrival_time_railway_station_path(station), method: :patch do
-                  = select_time(station.arrival_time(@route))
-                  = hidden_field_tag :route_id, @route.id
-                  = submit_tag "Изменить"
-              td
-                = form_tag update_departure_time_railway_station_path(station), method: :patch do
-                  = select_time(station.departure_time(@route))
+                = form_tag update_time_railway_station_path(station), method: :patch do
+                  = time_field_tag :arrival_time, station.check_station_attr(@route, :arrival_time)
+                  = time_field_tag :departure_time, station.check_station_attr(@route, :departure_time)
                   = hidden_field_tag :route_id, @route.id
                   = submit_tag "Изменить"
 p
