@@ -1,0 +1,17 @@
+= form_for @train do |f|
+  = render 'common/errors', resource: @train
+  p
+    = f.label :number, "Номер поезда:"
+    br
+    = f.text_field :number
+
+  div class="field"
+    = f.label :current_station, "Выберите маршрут:"
+    = f.collection_select :route_id, Route.all, :id, :title
+
+  div class="field"
+    = f.label :route, "Выберите станцию:"
+    = f.collection_select :current_station_id, RailwayStation.all, :id, :title
+
+  p
+    = f.submit "#{ @train.new_record? ? 'Создать' : 'Изменить' }"

@@ -1,0 +1,37 @@
+p id="notice" = notice
+
+div class="field"
+  strong Номер вагона:
+  =< @wagon.number
+
+div class="field"
+  strong Тип:
+  =< Wagon::TYPE[@wagon.wagon_type.to_sym]
+
+div class="field"
+  strong Верхние:
+  =< @wagon.top_seats
+
+div class="field"
+  strong Нижние:
+  =< @wagon.bottom_seats
+
+div class="field"
+  strong Боковые верхние:
+  =< @wagon.side_top_seats
+
+div class="field"
+  strong Боковые нижние:
+  =< @wagon.side_bottom_seats
+
+div class="field"
+  strong Добален к проезду:
+  - if @wagon.train.present?
+    =< @wagon.train.number
+    br
+  - else
+    К проезду не добавлен
+
+  = link_to 'Редактировать', edit_wagon_path(@wagon)
+  br
+  = link_to 'Назад', @wagon.train

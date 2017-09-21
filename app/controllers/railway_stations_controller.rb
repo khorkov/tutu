@@ -1,5 +1,6 @@
 class RailwayStationsController < ApplicationController
-  before_action :set_railway_station, only: %i[show edit update destroy]
+  before_action :set_railway_station, only: %i[show edit update destroy update_position update_time]
+  before_action :set_route, only: %i[update_position update_time]
 
   def index
     @railway_stations = RailwayStation.all
@@ -17,7 +18,7 @@ class RailwayStationsController < ApplicationController
     @railway_station = RailwayStation.new(railway_station_params)
 
     if @railway_station.save
-      redirect_to @railway_station
+      redirect_to @railway_station, notice: 'Станция была успешно создана.'
     else
       render :new
     end
@@ -25,7 +26,7 @@ class RailwayStationsController < ApplicationController
 
   def update
     if @railway_station.update(railway_station_params)
-      redirect_to @railway_station
+      redirect_to @railway_station, notice: 'Станция была успешно обновлена.'
     else
       render :edit
     end
@@ -33,10 +34,25 @@ class RailwayStationsController < ApplicationController
 
   def destroy
     @railway_station.destroy
-    redirect_to railway_stations_path
+    redirect_to railway_stations_path, notice: 'Станция была успешно удалена.'
+  end
+
+  def update_position
+    @railway_station.update_position(@route, params[:station_position])
+    redirect_to @route
+  end
+
+  def update_time
+    @railway_station.update_time(@route, params[:arrival_time],
+                                 params[:departure_time])
+    redirect_to @route, notice: 'График станции был успешно обновлен'
   end
 
   private
+
+  def set_route
+    @route = Route.find(params[:route_id])
+  end
 
   def set_railway_station
     @railway_station = RailwayStation.find(params[:id])
