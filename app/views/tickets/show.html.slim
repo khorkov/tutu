@@ -1,0 +1,22 @@
+h1 Билет
+
+div class=""
+  p span class="text-muted" ФИО: = @ticket.passenger_name
+  p span class="text-muted" Номер паспорта: = @ticket.passport_number
+
+  table class="table"
+    thead
+      th Поезд
+      th Маршрут
+      th Отправление
+      th Прибытие
+      td = @ticket.train.number
+      td = @ticket.train.route.title
+      td
+        = @departure_station.title 
+        br
+        = @departure_station.format_attr(@ticket.train.route, :departure_time)
+      td
+        = @arrival_station.title 
+        br
+        = @arrival_station.format_attr(@ticket.train.route, :arrival_time)

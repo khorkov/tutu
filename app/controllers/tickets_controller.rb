@@ -1,5 +1,4 @@
 class TicketsController < ApplicationController
-
   def show
     @ticket = Ticket.find(params[:id])
     @departure_station = RailwayStation.find_by(params[:start_station_id])
@@ -17,11 +16,11 @@ class TicketsController < ApplicationController
   def create
     @ticket = Ticket.new(tickets_params)
 
-     if @ticket.save
-       redirect_to @ticket, notice: 'Билет успешно создан.'
-     else
-       render :new
-     end
+    if @ticket.save
+      redirect_to @ticket, notice: 'Билет успешно создан.'
+    else
+      render :new
+    end
   end
 
   private
@@ -29,5 +28,4 @@ class TicketsController < ApplicationController
   def tickets_params
     params.require(:ticket).permit(:train_id, :start_station_id, :end_station_id, :passenger_name, :passport_number)
   end
-
 end

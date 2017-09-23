@@ -1,0 +1,44 @@
+h1 Поиск билета:
+
+= form_tag search_path, role: 'form'  do
+  div class="row"
+    div class="col-md-6"
+      = label_tag :departure_station, 'Станция отправления'
+      = select_tag :departure_station,
+                     options_from_collection_for_select(RailwayStation.all, :id, :title),
+                     class: 'form-control'
+    div class="col-md-6"
+      = label_tag :arrival_station, 'Станция прибытия'
+      = select_tag :arrival_station,
+                     options_from_collection_for_select(RailwayStation.all, :id, :title), class: 'form-control'
+    br
+  div class=""
+    = submit_tag 'Найти', class: 'btn btn-default'
+
+- if @trains.present?
+  br
+  p Результаты поиска:
+
+  table class="table"
+    thead
+      th Номер
+      th class="text-center" Маршрут
+      th class="text-center" Станция, <br> время отправления
+      th class="text-center" Станция, <br> время прибытия
+      th
+    tbody
+      - @trains.each do |train|
+        tr
+          td = train.number
+          td class="text-center" = train.route.title
+          td class="text-center"
+            = @departure_station.title 
+            br
+            = @departure_station.format_attr(train.route, :departure_time)
+          td class="text-center"
+            = @arrival_station.title 
+            br
+            = @arrival_station.format_attr(train.route, :arrival_time)
+
+          td class="text-right"
+            = link_to 'Купить билет', new_ticket_path(train_id: train.id, start_station_id: @departure_station, end_station_id: @arrival_station)

@@ -1,14 +1,13 @@
 class RailwayStation < ApplicationRecord
-
   has_many :trains, foreign_key: :current_station_id
   has_many :railway_stations_routes
   has_many :routes, through: :railway_stations_routes
 
-  validates :title, presence: true, length: { in: 3..20  }, uniqueness: true
+  validates :title, presence: true, length: { in: 3..20 }, uniqueness: true
 
-  scope :ordered, -> { joins(:railway_stations_routes).order('railway_stations_routes.station_position').uniq  }
+  scope :ordered, -> { joins(:railway_stations_routes).order('railway_stations_routes.station_position').uniq }
 
-  def check_station_attr(route, attr)
+  def format_attr(route, attr)
     value = station_route(route).try(attr)
     return unless value
     RailwayStationsRoute.columns_hash[attr.to_s].type.eql?(:time) ? value.strftime('%H:%M') : value
@@ -31,5 +30,4 @@ class RailwayStation < ApplicationRecord
   def station_route(route)
     @station_route ||= RailwayStationsRoute.find_by(route: route, railway_station: self)
   end
-
 end

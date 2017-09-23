@@ -44,7 +44,7 @@ class WagonsController < ApplicationController
   end
 
   def set_wagon
-     @wagon = Wagon.find(params[:id])
+    @wagon = Wagon.find(params[:id])
   end
 
   def wagon_params
