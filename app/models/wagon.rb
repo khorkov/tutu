@@ -1,12 +1,16 @@
 class Wagon < ApplicationRecord
-  TYPE = { coupe: 'купе', economy: 'плацкарт', premium: 'премиум', sitdown: 'сидячий' }.freeze
+  TYPE = {
+    coupe: 'купе',
+    economy: 'плацкарт',
+    premium: 'премиум',
+    sitdown: 'сидячий'
+  }.freeze
 
   belongs_to :train
 
-  validates :number, :wagon_type, :top_seats, :bottom_seats, :side_top_seats, :side_bottom_seats, :sitdown_seats, presence: true
-  validates :number, uniqueness: { scope: :train_id }
-
   before_validation :set_number
+  validates :number, uniqueness: { scope: :train_id  }
+  validates :number, :wagon_type, :top_seats, :bottom_seats, :side_top_seats, :side_bottom_seats, :sitdown_seats, presence: true
 
   private
 
