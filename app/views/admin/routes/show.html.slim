@@ -1,0 +1,45 @@
+p
+  strong Название:
+  =< @route.title
+p
+  strong Список поездов маршрута:
+p
+  - if @route.trains.empty?
+    Поездов на маршруте нет
+  - else
+    ul
+      - @route.trains.each do |train|
+        li = train.number
+p
+  strong Список станций маршрута:
+p
+  - if @route.railway_stations.empty?
+    Станций в маршруте нет.
+  - else
+      table
+        thead
+          tr
+            td width="100px" Название
+            td Позиция
+            td Прибытие
+            td Отправление
+        tbody
+          - @route.railway_stations.ordered.each do |station|
+            tr
+              td = station.title
+              td
+                = form_tag update_position_admin_railway_station_path(station), method: :patch do
+                  = number_field_tag :station_position, station.format_attr(@route, :station_position)
+                  = hidden_field_tag :route_id, @route.id
+                  = submit_tag "Изменить"
+              td
+                = form_tag update_time_admin_railway_station_path(station), method: :patch do
+                  = time_field_tag :arrival_time, station.format_attr(@route, :arrival_time)
+                  = time_field_tag :departure_time, station.format_attr(@route, :departure_time)
+                  = hidden_field_tag :route_id, @route.id
+                  = submit_tag "Изменить"
+p
+
+  = link_to 'Редактировать', edit_admin_route_path(@route)
+  br
+= link_to 'Назад', admin_routes_path

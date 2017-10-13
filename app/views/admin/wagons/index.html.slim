@@ -1,0 +1,14 @@
+strong Список вагонов
+
+table
+  thead
+    tr
+      th №
+      th Тип
+      th Верхних
+      th Нижних
+      th colspan="3"
+  tbody
+    = render @wagons
+br
+= link_to 'Добавить вагон', new_wagon_path

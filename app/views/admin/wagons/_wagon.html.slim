@@ -1,0 +1,8 @@
+tr
+  td = wagon.number
+  td = wagon.wagon_type
+  td = wagon.top_seats
+  td = wagon.bottom_seats
+  td = link_to 'Показать', wagon_path(carriage)
+  td = link_to 'Редактировать', edit_wagon_path(carriage)
+  td = link_to 'Удалить', wagon_path(carriage), method: :delete, data: { confirm: 'Вы уверены?' }
