@@ -1,0 +1,27 @@
+p
+  strong Номер поезда:
+  =< @train.number
+p
+  strong На станции:
+  - if @train.current_station.present?
+    =< @train.current_station.title
+  - else
+    На станции нет поездов.
+p
+  strong Маршрут:
+  - if @train.route.present?
+    =< @train.route.title
+  - else
+    Маршрут не назначен.
+p
+  strong Вагоны:
+  ul
+    - @train.wagons_sorted.each do |wagon|
+      li
+        = link_to "Вагон №#{wagon.number}", [wagon]
+
+= link_to 'Добавить вагон', new_admin_train_path
+br
+= link_to 'Редактировать', edit_admin_train_path(@train)
+br
+= link_to 'Назад', admin_trains_path

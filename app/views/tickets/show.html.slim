@@ -1,0 +1,28 @@
+h1 Билет
+
+div class=""
+  h4 Детали заказа
+  p span class="text-muted" Имя клиента: = @ticket.user.first_name
+    span class="text-muted" Дата и время покупки билета:
+    = @ticket.created_at.strftime '%d.%m.%Y, %H:%M'
+  h4 Сведения о пассажире:
+    span class="text-muted" Имя пассажира:
+    = @ticket.passenger_name
+  p span class="text-muted" Номер паспорта: = @ticket.passport_number
+  br
+  table class="table"
+    thead
+      th Поезд
+      th Маршрут
+      th Отправление
+      th Прибытие
+    tbody
+      td = @ticket.train.number
+      td = @ticket.train.route.title
+      td
+        = @ticket.start_station.title br
+        = @ticket.start_station.check_station_attr(@ticket.train.route, :departure_time) %>
+        = @ticket.last_station.title br
+        = @ticket.end_station.check_station_attr(@ticket.train.route, :arrival_time)
+
+= link_to 'Назад', tickets_path

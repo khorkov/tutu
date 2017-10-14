@@ -1,0 +1,5 @@
+tr
+  td = train.number
+  td = link_to 'Показать', admin_train_path(train)
+  td = link_to 'Редактировать', edit_admin_train_path(train)
+  td = link_to 'Удалить', admin_train_path(train), method: :delete, data: { confirm: 'Вы уверены?' }

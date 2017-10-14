@@ -5,6 +5,6 @@ class Search < ApplicationRecord
   end
 
   def self.check_train(station_id)
-    Train.joins(route: :railway_stations).where(railway_stations: { id: station_id  })
+    Train.joins(route: :railway_stations).where(railway_stations: { id: station_id })
   end
 end

@@ -1,0 +1,20 @@
+h1 Мои билеты
+
+- if @tickets.present?
+  table class="table"
+    thead
+      tr
+        th
+        th Маршрут
+        th Станция отправления
+        th Станция прибытия
+        th colspan="2" class="text-right">Действия
+
+    tbody
+      = render @tickets
+
+- else
+  p вы еще не купили ни одного билета.
+
+p class="nav-inner"
+  = link_to 'Назад', root_path

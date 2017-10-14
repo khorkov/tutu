@@ -1,0 +1,15 @@
+h1 Билеты
+table class="table"
+  thead
+    tr
+      th Клиент
+      th Поезд
+      th Маршрут
+      th Станция отправления
+      th Станция прибытия
+      th colspan="2" class="text-right">Действия
+  tbody
+    = render @tickets
+
+br
+= link_to 'Новый билет', new_admin_ticket_path

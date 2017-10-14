@@ -1,8 +1,9 @@
 class Train < ApplicationRecord
   belongs_to :current_station, class_name: 'RailwayStation', optional: true
-  has_many :tickets
-  has_many :wagons
   belongs_to :route
+
+   has_many :tickets
+   has_many :wagons, dependent: :destroy
 
   validates :number, presence: true
 
@@ -14,5 +15,4 @@ class Train < ApplicationRecord
   def sum_of_seats_by_wagon_type(wagon_type, seat_type)
     wagons.where(type: wagon_type).sum(seat_type)
   end
-
 end
