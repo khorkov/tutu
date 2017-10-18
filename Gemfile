@@ -16,9 +16,10 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'slim'
 gem 'jquery-rails'
-gem 'bootstrap', '~> 4.0.0.alpha6'
-gem 'popper_js', '~> 1.11', '>= 1.11.1'
 gem 'devise'
+gem 'toastr-rails'
+gem 'therubyracer'
+gem "twitter-bootstrap-rails"
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -26,16 +27,12 @@ group :development, :test do
   gem 'selenium-webdriver'
 end
 
-source 'https://rails-assets.org' do
-  gem 'rails-assets-tether', '>= 1.3.3'
-end
-
 group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'pry-rails'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'letter_opener'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

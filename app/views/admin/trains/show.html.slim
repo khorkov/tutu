@@ -18,10 +18,10 @@ p
   ul
     - @train.wagons_sorted.each do |wagon|
       li
-        = link_to "Вагон №#{wagon.number}", [wagon]
+        = link_to "Вагоны поезда:#{@wagon.train.number}", [:admin, @wagon.train]
 
-= link_to 'Добавить вагон', new_admin_train_path
+= link_to 'Добавить вагон', new_admin_train_wagon_path(@train)
 br
-= link_to 'Редактировать', edit_admin_train_path(@train)
+= link_to 'Изменить', edit_admin_wagon_path(@train)
 br
 = link_to 'Назад', admin_trains_path

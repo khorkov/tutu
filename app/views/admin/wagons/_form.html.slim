@@ -1,4 +1,4 @@
-= form_for [:admin, @train, wagon.becomes(Wagon)] do |f|
+= form_for [:admin, @train, @wagon] do |f|
   = render 'common/errors', resource: @wagon
 
   div class="field"

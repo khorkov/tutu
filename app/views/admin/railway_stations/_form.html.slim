@@ -4,5 +4,5 @@
     = f.label :title
     br
     = f.text_field :title
-  p
-    = f.submit "#{ @railway_station.new_record? ? 'Создать' : 'Изменить' }"
+  div class="actions"
+    =  f.submit  t('.submit', action: @railway_station.new_record? ? 'Создать' : 'Изменить')
