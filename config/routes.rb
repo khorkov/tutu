@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  root 'welcome#index'
+  root 'searches#show'
 
   resource  :search, only: %i[show create]
   resources :tickets, only: %i[create show]

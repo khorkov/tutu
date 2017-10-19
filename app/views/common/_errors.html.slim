@@ -1,8 +1,6 @@
 - if resource.errors.any?
-    div id="error_explanation"
-      h2
-        = pluralize(resource.errors.count, "error") 
-	prohibited this train from being saved:
-      ul
-        resource.errors.full_messages.each do |msg|
-          li = msg
+  div id="error_explanation"
+    h2  = t('common.errors')
+    ul
+      - resource.errors.full_messages.each do |message|
+        li = message

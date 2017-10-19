@@ -5,16 +5,15 @@ h1 Поиск билета:
     div class="col-md-6"
       = label_tag :departure_station, 'Станция отправления'
       = select_tag :departure_station,
-                     options_from_collection_for_select(RailwayStation.all, :id, :title),
-                     class: 'form-control'
+                     options_from_collection_for_select(RailwayStation.all, :id, :title), class: 'form-control'
     div class="col-md-6"
       = label_tag :arrival_station, 'Станция прибытия'
       = select_tag :arrival_station,
-                     options_from_collection_for_select(RailwayStation.all, :id, :title),
-                     class: 'form-control'
+                     options_from_collection_for_select(RailwayStation.all, :id, :title), class: 'form-control'
     br
   div class=""
-    = submit_tag 'Найти', class: 'btn btn-default'
+    br
+    = submit_tag 'Найти', class: 'btn btn-primary'
 
 - if @trains.present?
   br
@@ -32,11 +31,13 @@ h1 Поиск билета:
           td = train.number
           td class="text-center"= train.route.title
           td class="text-center"
-            = @departure_station.title br
+            = @departure_station.title 
+            br
             = @departure_station.check_station_attr(train.route, :departure_time)
           td
           td class="text-center"
-            = @arrival_station.title br
+            = @arrival_station.title 
+            br
             = @arrival_station.check_station_attr(train.route, :arrival_time)
           td class="text-right"
             = link_to 'Купить', ticket_path_helper(train), class: 'btn btn-default btn-sm'

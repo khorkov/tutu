@@ -1,0 +1,22 @@
+ru:
+  activerecord:
+    models:
+      railway_station:      'Станция'
+      train:                'Поезд'
+      wagon:                'Вагон'
+    attributes:
+      railway_station:
+        title:              'Название'
+      train:
+        number:             'Номер'
+        cunnent_station:    'Текущая станция'
+    errors:
+      messages:
+        blank:              'Не может быть пустым'
+        too_short:          'слишком короткое'
+        too_long:           'слишком длинное'
+      models:
+        railway_station:
+          attributes:
+            title:
+              blank:        'должно быть указано'
